@@ -22,7 +22,7 @@ public class ModEntityCreator {
 
     // REGESTRIES
 
-    public static final RegistryObject<EntityType<SkubbleEntity>> SKUBBLE = ENTITY_TYPES.register("skubble", () -> EntityType.Builder.of(SkubbleEntity::new, MobCategory.CREATURE).sized(0.6f, 0.2f).build(new ResourceLocation(ExpansionMod.MOD_ID, "skubble").toString()));
+    public static final RegistryObject<EntityType<SkubbleEntity>> SKUBBLE = ENTITY_TYPES.register("skubble", () -> EntityType.Builder.of(SkubbleEntity::new, MobCategory.MONSTER).sized(0.6f, 0.2f).build(new ResourceLocation(ExpansionMod.MOD_ID, "skubble").toString()));
 
     // ATTRIBUTES
 
