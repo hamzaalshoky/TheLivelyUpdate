@@ -6,7 +6,9 @@ import net.itshamza.expansion.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.AmethystClusterBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PointedDripstoneBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -23,8 +25,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, ExpansionMod.MOD_ID);
 
-    public static final RegistryObject<Block> infested_dripstone = registerBlock("infested_dripstone", () -> new Block(BlockBehaviour.Properties.of(STONE)), ModCreativeModeTabs.LIVELY_TAB);
-    public static final RegistryObject<Block> infested_amethyst = registerBlock("infested_amethyst", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST)), ModCreativeModeTabs.LIVELY_TAB);
+    public static final RegistryObject<Block> infested_dripstone = registerBlock("infested_dripstone", () -> new PointedDripstoneBlock(BlockBehaviour.Properties.of(STONE).dynamicShape()), ModCreativeModeTabs.LIVELY_TAB);
+    public static final RegistryObject<Block> infested_amethyst = registerBlock("infested_amethyst", () -> new Block(BlockBehaviour.Properties.of(Material.AMETHYST).dynamicShape()), ModCreativeModeTabs.LIVELY_TAB);
 
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
