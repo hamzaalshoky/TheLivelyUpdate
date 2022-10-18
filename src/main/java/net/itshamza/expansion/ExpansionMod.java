@@ -1,8 +1,12 @@
 package net.itshamza.expansion;
 
 import com.mojang.logging.LogUtils;
+import net.itshamza.expansion.block.ModBlocks;
 import net.itshamza.expansion.entity.ModEntityCreator;
 import net.itshamza.expansion.item.ModItems;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,6 +41,8 @@ public class ExpansionMod
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
+        // Register the clientSetup method for modloading
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
@@ -46,6 +52,7 @@ public class ExpansionMod
 
         ModEntityCreator.register(eventBus);
         ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -54,6 +61,11 @@ public class ExpansionMod
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
+
+    private void clientSetup(final FMLCommonSetupEvent event){
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.INFESTED_DRIPSTONE.get(), RenderType.cutout());
+    }
+
 
     private void enqueueIMC(final InterModEnqueueEvent event)
     {

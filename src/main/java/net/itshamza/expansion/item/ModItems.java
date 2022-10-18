@@ -14,7 +14,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, ExpansionMod.MOD_ID);
 
     public static final RegistryObject<Item> SKUBBLE_SPAWN_EGG = ITEMS.register("skubble_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntityCreator.SKUBBLE,6577212, 7629892,
+            () -> new ForgeSpawnEggItem(ModEntityCreator.SKUBBLE,147536, 151608,
                     new Item.Properties().tab(ModCreativeModeTabs.LIVELY_TAB)));;
 
     public static void register(IEventBus eventBus) {

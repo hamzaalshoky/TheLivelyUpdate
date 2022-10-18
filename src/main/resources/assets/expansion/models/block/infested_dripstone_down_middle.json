@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pointed_dripstone_down_middle",
+  "textures": {
+    "cross": "minecraft:block/pointed_dripstone_down_middle"
+  }
+}

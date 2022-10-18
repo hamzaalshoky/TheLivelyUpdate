@@ -1,5 +1,6 @@
 package net.itshamza.expansion.entity.custom;
 
+import net.itshamza.expansion.block.custom.InfestedDripstoneBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -20,7 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.InfestedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -120,7 +120,7 @@ public class SkubbleEntity extends Monster implements IAnimatable{
     }
 
     public float getWalkTargetValue(BlockPos p_33530_, LevelReader p_33531_) {
-        return InfestedBlock.isCompatibleHostBlock(p_33531_.getBlockState(p_33530_.below())) ? 10.0F : super.getWalkTargetValue(p_33530_, p_33531_);
+        return InfestedDripstoneBlock.isCompatibleHostBlock(p_33531_.getBlockState(p_33530_.below())) ? 10.0F : super.getWalkTargetValue(p_33530_, p_33531_);
     }
 
     public static boolean checkSkubbleEntitySpawnRules(EntityType<SkubbleEntity> p_186281_, LevelAccessor p_186282_, MobSpawnType p_186283_, BlockPos p_186284_, Random p_186285_) {
@@ -157,7 +157,7 @@ public class SkubbleEntity extends Monster implements IAnimatable{
                     this.selectedDirection = Direction.getRandom(random);
                     BlockPos blockpos = (new BlockPos(this.mob.getX(), this.mob.getY() + 0.5D, this.mob.getZ())).relative(this.selectedDirection);
                     BlockState blockstate = this.mob.level.getBlockState(blockpos);
-                    if (InfestedBlock.isCompatibleHostBlock(blockstate)) {
+                    if (InfestedDripstoneBlock.isCompatibleHostBlock(blockstate)) {
                         this.doMerge = true;
                         return true;
                     }
@@ -179,8 +179,8 @@ public class SkubbleEntity extends Monster implements IAnimatable{
                 LevelAccessor levelaccessor = this.mob.level;
                 BlockPos blockpos = (new BlockPos(this.mob.getX(), this.mob.getY() + 0.5D, this.mob.getZ())).relative(this.selectedDirection);
                 BlockState blockstate = levelaccessor.getBlockState(blockpos);
-                if (InfestedBlock.isCompatibleHostBlock(blockstate)) {
-                    levelaccessor.setBlock(blockpos, InfestedBlock.infestedStateByHost(blockstate), 3);
+                if (InfestedDripstoneBlock.isCompatibleHostBlock(blockstate)) {
+                    levelaccessor.setBlock(blockpos, InfestedDripstoneBlock.infestedStateByHost(blockstate), 3);
                     this.mob.spawnAnim();
                     this.mob.discard();
                 }
@@ -221,11 +221,11 @@ public class SkubbleEntity extends Monster implements IAnimatable{
                             BlockPos blockpos1 = blockpos.offset(j, i, k);
                             BlockState blockstate = level.getBlockState(blockpos1);
                             Block block = blockstate.getBlock();
-                            if (block instanceof InfestedBlock) {
+                            if (block instanceof InfestedDripstoneBlock) {
                                 if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(level, this.SkubbleEntity)) {
                                     level.destroyBlock(blockpos1, true, this.SkubbleEntity);
                                 } else {
-                                    level.setBlock(blockpos1, ((InfestedBlock)block).hostStateByInfested(level.getBlockState(blockpos1)), 3);
+                                    level.setBlock(blockpos1, ((InfestedDripstoneBlock)block).hostStateByInfested(level.getBlockState(blockpos1)), 3);
                                 }
 
                                 if (random.nextBoolean()) {
