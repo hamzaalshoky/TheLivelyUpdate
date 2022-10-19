@@ -13,13 +13,14 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PointedDripstoneBlock;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class InfestedDripstoneBlock extends PointedDripstoneBlock {
+public class InfestedDripstoneBlock extends PointedDripstoneBlock implements SimpleWaterloggedBlock {
     public InfestedDripstoneBlock(Block p_54178_, Properties p_154025_) {
         super(p_154025_.destroyTime(p_54178_.defaultDestroyTime() / 2.0F).explosionResistance(0.75F));
         this.hostBlock = p_54178_;
